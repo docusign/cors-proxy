@@ -2,7 +2,7 @@
   "name": "https-cors-proxy",
   "version": "1.0.0",
   "type": "module",
-  "description": "HTTPS CORS Proxy",
+  "description": "Simple yet powerful HTTPS reverse-proxy to enable CORS.",
   "main": "index.js",
   "scripts": {
     "lint": "eslint '**/*.{js,jsx}'",
@@ -18,7 +18,14 @@
     "cors",
     "proxy"
   ],
-  "author": "DocuSign",
+  "author": "DocuSign Developer Center <devcenter@docusign.com>",
+  "contributors": [
+    "https://github.com/docusign/cors-proxy/contributors"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/docusign/cors-proxy.git"
+  },
   "devDependencies": {
     "@babel/cli": "7.15.7",
     "@babel/preset-env": "7.15.8",

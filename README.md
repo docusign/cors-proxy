@@ -1,6 +1,11 @@
 # cors-proxy
 Simple yet powerful HTTPS reverse-proxy to enable CORS.
 
+## Usage
+```bash
+curl http://localhost:7979/https://demo.docusign.net/restapi
+```
+
 ## Docker setup
 ### Image creation
 ```bash
