@@ -1,0 +1,41 @@
+{
+  "name": "https-cors-proxy",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "HTTPS CORS Proxy",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint '**/*.{js,jsx}'",
+    "lint:fix": "eslint '**/*.{js,jsx}' --fix",
+    "start": "node ./index.js",
+    "test": "jest --verbose --passWithNoTests",
+    "coverage": "npm run test -- --coverage",
+    "ci": "npm run lint && npm run coverage",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "http",
+    "cors",
+    "proxy"
+  ],
+  "author": "DocuSign",
+  "devDependencies": {
+    "@babel/cli": "7.15.7",
+    "@babel/preset-env": "7.15.8",
+    "@types/jest": "27.0.2",
+    "eslint": "7.14.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-jest": "25.2.2",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-react": "7.26.1",
+    "husky": "7.0.2",
+    "jest": "27.3.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "request": "^2.88.2"
+  }
+}
