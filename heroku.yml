@@ -1,5 +1,7 @@
 build:
   docker:
-    worker: Dockerfile.heroku
+    web: Dockerfile.heroku
+  config:
+    NODE_ENV: production
 run:
-  web: node index.js
+  web: npm start
