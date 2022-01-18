@@ -37,10 +37,15 @@ docker ps
 ## Deploy to Heroku
 ```bash
 heroku login
-heroku create cors-proxy-container-app
-heroku stack:set container
+heroku create <unique-app-name>
 heroku config:set ORIGIN_ALLOW_LIST=https://example.com
-git push heroku main # if you made changes
+git commit -m "first commit"
+git push heroku main
+```
+
+Heroku deploys apps to HTTPS port 443 by default so you can test the setup by running:
+```bash
+curl https://<unique-app-name>.herokuapp.com/https://demo.docusign.net/restapi
 ```
 
 ## Deploy to any Linux-like environment
