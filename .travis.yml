@@ -14,4 +14,4 @@ node_js:
   - 16
   - 17
 script:
-  - npm run ci && cat coverage/lcov.info | ./node_modules/.bin/jest && rm -rf coverage
+  - npm run ci && cat coverage/lcov.info | ./node_modules/.bin/jest --passWithNoTests && rm -rf coverage

@@ -34,6 +34,13 @@ docker ps
 # cors-proxy-container   dsdevcenter/cors-proxy                       Running             123.456.789.012:7979->7979/tcp
 ```
 
+## Deploy to Heroku
+```bash
+heroku login
+heroku create cors-proxy-container-app
+
+```
+
 ## Deploy to any Linux-like environment
 ```bash
 docker pull dsdevcenter/cors-proxy
