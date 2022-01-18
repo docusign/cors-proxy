@@ -38,7 +38,9 @@ docker ps
 ```bash
 heroku login
 heroku create cors-proxy-container-app
-
+heroku stack:set container
+heroku config:set ORIGIN_ALLOW_LIST=https://example.com
+git push heroku main # if you made changes
 ```
 
 ## Deploy to any Linux-like environment

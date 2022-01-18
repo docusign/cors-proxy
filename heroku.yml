@@ -1,3 +1,5 @@
 build:
   docker:
     worker: Dockerfile.heroku
+run:
+  web: node index.js
