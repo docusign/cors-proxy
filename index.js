@@ -12,7 +12,7 @@ app.use(cors());
 // eslint-disable-next-line no-useless-escape
 app.use('/:url(https?:\/\/[a-zA-Z\.\-0-9\/]*)', (req, res) => {
   const origin = req.headers.origin || '';
-  if (originAllowList.length && originAllowList.indexOf(origin) === -1) {
+  if (originAllowList && originAllowList.length && originAllowList.indexOf(origin) === -1) {
     res.writeHead(403, 'Forbidden');
     res.end(`HTTP request origin ${origin} was not whitelisted for this proxy ${req.protocol}://${req.headers.host}. Please set environment variable ORIGIN_ALLOW_LIST to ${origin}.`);
     return;
