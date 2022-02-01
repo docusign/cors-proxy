@@ -1,37 +1,66 @@
-## Welcome to GitHub Pages
+# cors-proxy
+Simple yet powerful HTTPS reverse-proxy to enable CORS.
 
-You can use the [editor on GitHub](https://github.com/docusign/cors-proxy/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## Usage
+Once the project or Docker image is deployed to an host, you can perform any HTTP call. For instance if the host IP address is 123.456.789.012 and the port being used is 7979 (default) then a basic GET call would be like: 
+```bash
+curl http://123.456.789.012:7979/https://demo.docusign.net/restapi
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
-### Jekyll Themes
+## Deploy to AWS EC2
+```bash
+sudo yum update -y
+sudo amazon-linux-extras install docker
+sudo yum install docker
+sudo service docker start
+sudo systemctl enable docker
+sudo docker pull dsdevcenter/cors-proxy
+sudo docker run -d --name cors-proxy-container -p 7979:7979 -e ORIGIN_ALLOW_LIST=https://example.com dsdevcenter/cors-proxy
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/docusign/cors-proxy/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Deploy to Azure
+```bash
+docker login azure
+docker context create aci corsproxycontext
+docker context use corsproxycontext
+docker run -d --name cors-proxy-container -p 7979:7979 -e ORIGIN_ALLOW_LIST=https://example.com dsdevcenter/cors-proxy
+```
 
-### Support or Contact
+The last command might take a while. Once it's done list Docker containers under `corsproxycontext` ACI context in order to view the host name and port:
+```bash
+docker ps
+# CONTAINER ID           IMAGE                    COMMAND             STATUS              PORTS
+# cors-proxy-container   dsdevcenter/cors-proxy                       Running             123.456.789.012:7979->7979/tcp
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Deploy to Heroku
+```bash
+heroku login
+heroku create <unique-app-name>
+heroku config:set ORIGIN_ALLOW_LIST=https://example.com
+git commit -m "first commit"
+git push heroku main
+```
+
+Heroku deploys apps to HTTPS port 443 by default so you can test the setup by running:
+```bash
+curl https://<unique-app-name>.herokuapp.com/https://demo.docusign.net/restapi
+```
+
+## Deploy to any Linux-like environment
+```bash
+docker pull dsdevcenter/cors-proxy
+docker run -d --name cors-proxy-container -p 7979:7979 -e ORIGIN_ALLOW_LIST=https://example.com dsdevcenter/cors-proxy
+```
+
+## Docker setup
+### Image creation
+```bash
+docker build --tag cors-proxy .
+```
+
+### Container creation
+```bash
+docker run -d --name cors-proxy-container -p 7979:7979 -e ORIGIN_ALLOW_LIST=https://example.com dsdevcenter/cors-proxy
+```
